@@ -11,10 +11,20 @@
 
 ###> phpunit/phpunit ###
 /phpunit.xml
-/.phpunit.cache/
+.phpunit.result.cache
 ###< phpunit/phpunit ###
 
-###> symfony/asset-mapper ###
-/public/assets/
-/assets/vendor/
-###< symfony/asset-mapper ###
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+.idea
+/.php-cs-fixer.cache
+/public/info.php
+/public/build
