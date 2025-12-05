@@ -9,12 +9,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends BaseController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'index')]
     public function indexAction(
         Request $request,
     ): Response {
-        return $this->render('base.html.twig', [
-            'page_title' => 'Redro New.. Theme...',
+        return $this->render('full_page_base.html.twig', [
+            'page_title' => 'Propy Admin',
         ]);
     }
 }

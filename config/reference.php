@@ -281,7 +281,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         }>,
  *     },
  *     asset_mapper?: bool|array{ // Asset Mapper configuration
- *         enabled?: bool, // Default: true
+ *         enabled?: bool, // Default: false
  *         paths?: array<string, scalar|null>,
  *         excluded_patterns?: list<scalar|null>,
  *         exclude_dotfiles?: bool, // If true, any files starting with "." will be excluded from the asset mapper. // Default: true
@@ -735,10 +735,6 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *     },
  *     intercept_redirects?: bool, // Default: false
  *     excluded_ajax_paths?: scalar|null, // Default: "^/((index|app(_[\\w]+)?)\\.php/)?_wdt"
- * }
- * @psalm-type StimulusConfig = array{
- *     controller_paths?: list<scalar|null>,
- *     controllers_json?: scalar|null, // Default: "%kernel.project_dir%/assets/controllers.json"
  * }
  * @psalm-type TwigExtraConfig = array{
  *     cache?: bool|array{
@@ -1241,45 +1237,15 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *     generate_final_classes?: bool, // Default: true
  *     generate_final_entities?: bool, // Default: false
  * }
- * @psalm-type PentatrionViteConfig = array{
- *     public_directory?: scalar|null, // Default: "public"
- *     build_directory?: scalar|null, // we only need build_directory to locate entrypoints.json file, it's the "base" vite config parameter without slashes. // Default: "build"
- *     proxy_origin?: scalar|null, // Allows to use different origin for asset proxy, eg. http://host.docker.internal:5173 // Default: null
- *     absolute_url?: bool, // Prepend the rendered link and script tags with an absolute URL. // Default: false
- *     throw_on_missing_entry?: scalar|null, // Throw exception when entry is not present in the entrypoints file // Default: false
- *     throw_on_missing_asset?: scalar|null, // Throw exception when asset is not present in the manifest file // Default: true
- *     cache?: bool, // Enable caching of the entry point file(s) // Default: false
- *     preload?: "none"|"link-tag"|"link-header", // preload all rendered script and link tags automatically via the http2 Link header. (symfony/web-link is required) Instead <link rel="modulepreload"> will be used. // Default: "link-tag"
- *     crossorigin?: false|true|"anonymous"|"use-credentials", // crossorigin value, can be false, true (default), anonymous (same as true) or use-credentials // Default: true
- *     script_attributes?: list<scalar|null>,
- *     link_attributes?: list<scalar|null>,
- *     preload_attributes?: list<scalar|null>,
- *     default_build?: scalar|null, // Deprecated: The "default_build" option is deprecated. Use "default_config" instead. // Default: null
- *     builds?: array<string, array{ // Default: []
- *         build_directory?: scalar|null, // Default: "build"
- *         script_attributes?: list<scalar|null>,
- *         link_attributes?: list<scalar|null>,
- *         preload_attributes?: list<scalar|null>,
- *     }>,
- *     default_config?: scalar|null, // Default: null
- *     configs?: array<string, array{ // Default: []
- *         build_directory?: scalar|null, // Default: "build"
- *         script_attributes?: list<scalar|null>,
- *         link_attributes?: list<scalar|null>,
- *         preload_attributes?: list<scalar|null>,
- *     }>,
- * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
  *     services?: ServicesConfig,
  *     framework?: FrameworkConfig,
  *     twig?: TwigConfig,
- *     stimulus?: StimulusConfig,
  *     twig_extra?: TwigExtraConfig,
  *     security?: SecurityConfig,
  *     monolog?: MonologConfig,
- *     pentatrion_vite?: PentatrionViteConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -1288,12 +1254,10 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         debug?: DebugConfig,
  *         twig?: TwigConfig,
  *         web_profiler?: WebProfilerConfig,
- *         stimulus?: StimulusConfig,
  *         twig_extra?: TwigExtraConfig,
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
  *         maker?: MakerConfig,
- *         pentatrion_vite?: PentatrionViteConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -1301,11 +1265,9 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         services?: ServicesConfig,
  *         framework?: FrameworkConfig,
  *         twig?: TwigConfig,
- *         stimulus?: StimulusConfig,
  *         twig_extra?: TwigExtraConfig,
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
- *         pentatrion_vite?: PentatrionViteConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -1314,11 +1276,9 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         framework?: FrameworkConfig,
  *         twig?: TwigConfig,
  *         web_profiler?: WebProfilerConfig,
- *         stimulus?: StimulusConfig,
  *         twig_extra?: TwigExtraConfig,
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
- *         pentatrion_vite?: PentatrionViteConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,
