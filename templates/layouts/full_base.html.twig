@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block page_title %}{{ page_title | default('...') }} - Propy Admin{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.ico') }}">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block page_stylesheet %}{% endblock %}
+    {% block inline_styles %}{% endblock %}
+</head>
+<body>
+{% block page %}
+    <div class="page">
+        {% include '/layouts/includes/navbar.html.twig' %}
+        {% include '/layouts/includes/navbar-menu.html.twig' %}
+        <div class="page-wrapper">
+            {% block page_heading %}
+                {% include '/layouts/includes/page-title.html.twig' %}
+            {% endblock %}
+            {% block pre_page_content %}{% endblock %}
+            {% block page_body %}
+                <main id="content" class="page-body">
+                    <div class="container-xl">
+                        {% block page_content %}{% endblock %}
+                    </div>
+                </main>
+            {% endblock %}
+            {% block post_page_content %}{% endblock %}
+            {% include '/layouts/includes/footer.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+{% block page_scripts %}{% endblock %}
+{% block inline_js %}{% endblock %}
+</body>
+</html>
+

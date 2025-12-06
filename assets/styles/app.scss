@@ -1,0 +1,14 @@
+//Tabler Core Integration
+@import '~@tabler/core/scss/tabler';
+@import '~@tabler/core/scss/tabler-vendors';
+
+//Tabler Icons Integration
+@import "../icons/tabler/tabler-icons";
+
+//FontAwesome Integration
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts/";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block page_title %}{{ page_title | default('...') }} - Propy Admin{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.ico') }}">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block page_stylesheet %}{% endblock %}
+    {% block inline_styles %}{% endblock %}
+</head>
+<body>
+{% block page %}
+    <div class="page page-center">
+        <div class="container container-normal py-4">
+            {% block pre_page_content %}{% endblock %}
+            {% block page_body %}
+                <div class="row align-items-center g-4">
+                    {% block page_content %}{% endblock %}
+                </div>
+            {% endblock %}
+            {% block post_page_content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+{% block page_scripts %}{% endblock %}
+{% block inline_js %}{% endblock %}
+</body>
+</html>
+

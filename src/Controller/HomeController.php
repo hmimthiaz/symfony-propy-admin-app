@@ -13,8 +13,17 @@ class HomeController extends BaseController
     public function indexAction(
         Request $request,
     ): Response {
-        return $this->render('full_page_base.html.twig', [
-            'page_title' => 'Propy Admin',
+        return $this->render('layouts/full_base.html.twig', [
+            'page_title' => 'Home',
+        ]);
+    }
+
+    #[Route('/login', name: 'login')]
+    public function loginAction(
+        Request $request,
+    ): Response {
+        return $this->render('layouts/empty_base.html.twig', [
+            'page_title' => 'Login',
         ]);
     }
 }
